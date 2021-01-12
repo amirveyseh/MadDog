@@ -8,7 +8,7 @@ To deploy the MadDog server, please make sure to have at least 125 GB of disk sp
 1. Clone the repository
 2. Download the pre-trained models from ... and extract them in the root directory of the repository
 3. Install the requirements in `requirements.txt`
-4. Install the packages by running `pip install -e .` in the root directory of the repository
+4. Install the package by running `pip install -e .` in the root directory of the repository
 5. Change the working directory to `prototype/app` and run `python server.py`. The server will be run on port 5000.
 
 # Demo
