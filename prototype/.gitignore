@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+definition/
+AI/dataset/acronym/embedding.npy
+AE/saved_models/uad-shorts/best_model.pt
+AE/saved_models/uad-shorts_lower/best_model.pt
+AE/saved_models/uad-shorts_lower/checkpoint_epoch_100.pt
+AE/saved_models/uad-shorts_nocrf/best_model.pt
+acronym/dataset/UAD/embedding.npy
+acronym/saved_models/lstm_UAD/best_model.pt
+acronym/saved_models/lstm_UAD/checkpoint_epoch_100.pt
+AI/saved_models/uad-shorts_nocrf/best_model.pt

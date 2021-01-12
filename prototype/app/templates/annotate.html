@@ -1,0 +1,769 @@
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+<section class="container" id="Relevancy">
+    <div class="row">
+<!--        <div class="col-xs-12 col-md-12">-->
+<!--            <div class="panel panel-primary"><a class="panel-heading" href="javascript:void(0);" id="collapseTrigger"><strong>Tagging Instructions</strong> <span class="collapse-text">(Click to expand)</span> </a>-->
+<!--                <div class="panel-body" id="instructionBody"><strong>Acronym is a shortened form of a phrase which is created from the initial letters of the words of the phrase (one or more letter from each word) and is pronounced as a word; such as ASCII or NASA. Here are some examples for acronyms (i.e. the short forms) that appear along with their corresponding phrases (i.e. the long forms that are abbrevated by the acronyms). Note that the words in blue correspond to the long forms and the words in red correspond to the short forms): </strong>-->
+<!--                    <table class="table table-condensed table-striped table-responsive">-->
+<!--                        <colgroup>-->
+<!--                            <col class="col-xs-2 col-md-2" />-->
+<!--                            <col class="col-xs-10 col-md-10" />-->
+<!--                        </colgroup>-->
+<!--                        <tbody id="example-table">-->
+<!--                            &lt;!&ndash;<tr><td>More precisely, we introduce a <span style='color:blue'>distributed iterative soft thresholding algorithm</span> (<span style='color:red'>DISTA</span>) that  consists of three steps: an averaging step, a gradient step, and a soft thresholding operation.</td></tr>&ndash;&gt;-->
+<!--                            <tr><td><spnan style='color:blue'>Principal component analysis</spnan> (<span style='color:red'>PCA</span>) finds an orthogonal linear transformation that converts the data to coordinates that are uncorrelated and whose variance decreases from first to last coordinate.</td></tr>-->
+<!--                            <tr><td>Existing methods on <span style='color:blue'>learning with noisy labels</span> (<span style='color:red'>LNL</span>) primarily take a loss correction approach.</td></tr>-->
+<!--                            <tr><td><span style='color:red'>ADHD</span> stands for <span style='color:blue'>Attention Deficit Hyperactivity Disorder</span>. It is also called <span style='color:red'>ADD</span> for short (<span style='color:blue'>Attention Deficit Disorder</span>)</td></tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                    <div class="panel-body" id="requirement"><strong>In this task you are asked to find any short form (acronym) and long form (phrase) in the given sentence. Here are the rules you need to take care when you annotate the short forms and the long forms:</strong></dev>-->
+<!--                    <table class="table table-condensed table-striped table-responsive">-->
+<!--                        <colgroup>-->
+<!--                            <col class="col-xs-2 col-md-2" />-->
+<!--                            <col class="col-xs-10 col-md-10" />-->
+<!--                        </colgroup>-->
+<!--                        <tbody id="rule-table">-->
+<!--                            <tr><td>Each long form should accompany a short form. In other words, you should not annotate a long form in the given sentence if you don't see any short form for that in that sentence.</td></tr>-->
+<!--                            <tr><td>All long forms should be continuous. So, there might be some words between two words of the long form which are not used in the short form (Look at the second example above).</td></tr>-->
+<!--                            <tr><td>A short form cannot have more than one word</td></tr>-->
+<!--                            <tr><td>There could be multiple short forms and long forms in the sentence. You should annotate any occurance of the short forms and the long forms.</td></tr>-->
+<!--                            <tr><td>The short form and the long form are not required to be immediately after each other. That is, there could be multiple words between the short form and its long form in the sentence.</td></tr>-->
+<!--                            <tr><td>It is possible to have only the short form without any long form in the sentence. You should annotate that shot form too!</td></tr>-->
+<!--                            <tr><td>The short forms and their long form should be disjoint. So, they don't share any word.</td></tr>-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                    &lt;!&ndash;<table class="table table-condensed table-striped table-responsive">-->
+<!--                        <colgroup>-->
+<!--                            <col class="col-xs-2 col-md-2" />-->
+<!--                            <col class="col-xs-10 col-md-10" />-->
+<!--                        </colgroup>-->
+<!--                        <tbody id="instruction-table">-->
+<!--                        </tbody>-->
+<!--                    </table>&ndash;&gt;-->
+<!--                    &lt;!&ndash;<div class="text-center">-->
+<!--                        <img src="images/tagging.gif" alt="tagging" width="50%"/>-->
+<!--                    </div>&ndash;&gt;-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <h2>Highlight the <strong id="key-name" class="key-name">name</strong> (<span id="hint-name"></span>) in the text. To select <span id="oppo-hint"></span>, switch the button at the bottom to <span id="oppo-name"></span></h2>
+    <div id="raw">{{content}}</div>
+
+    <div class="row" id="workContent">
+        <div class="col-xs-12 col-sm-8 content">
+            <div id="well" class="ann well"></div>
+        </div>
+        <div class="col-xs-12 col-sm-8 fields" style="margin-bottom: 25px;">
+            <div id="button-div">
+                <button type="button" id="undo" value="undo" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-backward"></span> Undo
+                </button>
+                <button type="button" id="remove" value="remove" class="btn btn-danger">
+                    <span class="glyphicon glyphicon-remove"></span> Reset
+                </button>
+            </div>
+
+            <div class="btn-group-vertical" data-toggle="buttons" id="choice">
+            </div>
+
+        </div>
+
+    </div>
+
+        <div class="container">
+  <h2>Match phrase and acronym</h2>
+  <div id="matchinfo">
+    <p>You have selected no long-form (phrase). When you select long-forms they will appear here and you should choose which short-forms (acronyms) you have selected for them.</p>
+    <hr/>
+  </div>
+            <div id="matchform"></div>
+<!--  <p>What acronym did you choose for this phrase?</p>-->
+<!--  <p>Use the .dropdown-menu class to actually build the dropdown menu.</p>-->
+<!--  <div class="dropdown">-->
+<!--    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials-->
+<!--    <span class="caret"></span></button>-->
+<!--    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">-->
+<!--      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>-->
+<!--      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>-->
+<!--      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>-->
+<!--      <li role="presentation" class="divider"></li>-->
+<!--      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>-->
+<!--    </ul>-->
+<!--  </div>-->
+<!--    <hr/>-->
+<!--      <p>What acronym did you choose for this phrase?</p>-->
+<!--  <p>Use the .dropdown-menu class to actually build the dropdown menu.</p>-->
+<!--  <div class="dropdown">-->
+<!--    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials-->
+<!--    <span class="caret"></span></button>-->
+<!--    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">-->
+<!--      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HTML</a></li>-->
+<!--      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">CSS</a></li>-->
+<!--      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">JavaScript</a></li>-->
+<!--      <li role="presentation" class="divider"></li>-->
+<!--      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>-->
+<!--    </ul>-->
+  </div>
+</div>
+
+        <br/>
+
+    <div id="form" class="row"> </div>
+    <span title="Highlight all fields before submitting"><input id="submit" class="btn btn-default" data-key="Enter" type="submit" disabled=disabled /></span>
+</section>
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+<link href="style.css" rel="stylesheet" />
+<input name="dummy" style="visibility:hidden"/>
+<script src="config.js"></script>
+<!--Uncomment the next line for a NER task-->
+<!-- <script src="example/config.js"></script> -->
+<script>
+    var fieldName = {
+    "shortform": "Short Form (acronym)",
+    "longform": "Long form (phrase)",
+}
+var shortName = {
+    "shortform": "short form",
+    "longform": "long form",
+}
+var hints = {
+    "shortform": "acronym",
+    "longform": "phrase",
+}
+var oppoName = {
+    "shortform": "Long form (phrase)",
+    "longform": "Short Form (acronym)",
+}
+var oppoHint = {
+    "shortform": "phrase",
+    "longform": "acronym",
+}
+var longDesc = {
+    "shortform": "An acronym which is the shortended from of a phrase prounnced as a word",
+    "longform": 'A phrase in which an acronym is created for that',
+}
+var shortcutKey = {
+    "shortform": "sf",
+    "longform": "lf",
+}
+// ---------------------------------------------------------
+// Global
+// ---------------------------------------------------------
+
+var keys = Object.keys(fieldName);
+var annotations = {};
+var values = {};
+var key;
+
+// ---------------------------------------------------------
+// Create jQuery elements
+// ---------------------------------------------------------
+
+var raw = $('#raw');
+var well = $('#well');
+var submit = $('#submit');
+var choice = $('#choice');
+var keyname = $('#key-name');
+var hintname = $('#hint-name');
+var oppoElem = $('#oppo-name');
+var oppoHintElem = $('#oppo-hint');
+var instructionTable = $('#instruction-table');
+
+var form = $("#form");
+var answer = {};
+var tagHidden = {};
+var noVal = {};
+var radios = {};
+// answerHiddenDuplicates value of answer but is needed because
+// otherwise the data is not sent
+var answerHidden = {};
+
+var makeInstruction = function(key) {
+    return ($(
+        '<tr>')
+        .append($('<td>').text(fieldName[key]))
+        .append($('<td>').text(longDesc[key]))
+    );
+}
+
+var makeChoice = function(key) {
+    var input = ($(
+        '<input>')
+        .attr({
+            'name': 'choice', 'id': key + "-choice",
+            'value': key, 'type': 'radio', 'data-key': shortcutKey[key]
+        })
+        .text(fieldName[key])
+    );
+    radios[key] = input;
+    var label = ($(
+        '<label>')
+        .addClass('btn btn-default')
+        .text(fieldName[key])
+        .append(input)
+        .attr({'title': "Shortcut: " +  shortcutKey[key]})
+    );
+    return label;
+}
+
+var makeAnswerHidden = function(key) {
+    var input = ($(
+        '<input>')
+        .attr({'type': 'hidden', 'name': key, 'id': key + "-hidden"})
+    );
+    answerHidden[key] = input;
+    return input;
+}
+
+var makeTagHidden = function(key) {
+    var input = ($(
+        '<input>')
+        .attr({'type': 'hidden', 'name': key + "-tag", 'id': key + "-tag"})
+    );
+    tagHidden[key] = input;
+    return input;
+}
+
+
+var  makeFormRow = function(key) {
+    var checkbox = ($(
+        '<input>')
+        .attr({'type': 'checkbox', 'id': "no-" + key})
+        .addClass('form-check-input')
+        .change(function() { show(); })
+    );
+    var label = ($(
+        '<label>')
+        .attr({'for': "no-" + key})
+        .addClass('form-check-label')
+        .text(' There is no ' + shortName[key])
+    );
+
+    var input = ($(
+        '<input>')
+        .attr({'type': 'text', 'disabled':'disabled', 'id': key})
+        .addClass('form-control')
+    );
+
+    var div = ($(
+        '<div>')
+        .addClass('col-xs-12 col-sm-12 content')
+        .append($('<label>')
+            .attr({'for': key})
+            .text(fieldName[key])
+        )
+        .append($('<div>')
+            .addClass('form-row')
+            .append($('<div>')
+                .addClass('col-sm-8')
+                .append(input)
+            )
+            .append($('<div>')
+                .addClass('col-sm-4')
+                .append($('<div>')
+                    .addClass('form-check')
+                    .append(checkbox)
+                    .append(' ')
+                    .append(label)
+                )
+            )
+        )
+    );
+    answer[key] = input;
+    noVal[key] = checkbox;
+    return div;
+}
+
+var map_input = ($('<input>').attr({'type': 'hidden', 'name': 'map', 'id': "map-hidden"}));
+var makeDom = function() {
+    for (var key of keys) {
+        form.append(makeFormRow(key));
+        form.append(makeTagHidden(key));
+        form.append(makeAnswerHidden(key));
+        form.append(map_input)
+        choice.append(makeChoice(key));
+        annotations[key] = [];
+        values[key] = "";
+        instructionTable.append(makeInstruction(key));
+    }
+}
+
+// ---------------------------------------------------------
+// Annotation logic
+// ---------------------------------------------------------
+
+var old_annotations = [];
+
+
+var get_annotation_id = function(token_id, annotations) {
+    var found = annotations.findIndex(function(annotation) {
+        return token_id >= annotation[0] && token_id < annotation[1];
+    });
+    return found;
+};
+
+var mouse_down = function(id) {
+    var annotation_id = get_annotation_id(id, annotations[key]);
+    if (annotation_id > -1) {
+        delete_annotation(annotation_id);
+        show();
+    } else {
+        first_token = id;
+    }
+};
+
+var mouse_up = function(id) {
+    if (first_token > -1) {
+        if (first_token <= id) {
+            add_annotation([first_token, id + 1]);
+        } else {
+            add_annotation([id, first_token + 1]);
+        }
+        first_token = -1;
+        show();
+    }
+    clear_selection();
+};
+
+var clear_selection = function() {
+    if (document.selection) {
+        document.selection.empty();
+    } else if ( window.getSelection ) {
+        window.getSelection().removeAllRanges();
+    }
+};
+
+var get_value = function() {
+    var values = _.map(annotations[key], function(annotation) {
+        return tokens.slice(annotation[0], annotation[1]).join(" ");
+    });
+    return values.join(" ");
+};
+
+var remove_all_annotations = function() {
+    old_annotations = annotations[key].slice();
+    annotations[key] = []
+};
+
+var delete_annotation = function(annotation_id) {
+    if (annotation_id > -1) {
+        old_annotations = annotations[key].slice();
+        annotations[key].splice(annotation_id, 1);
+    }
+}
+
+var add_annotation = function(annotation) {
+    new_annotation = [[annotation[0],annotation[0]+1]]
+    i = annotation[0]+1
+    while(i<annotation[1]){
+        new_annotation.push([i,i+1])
+        i += 1
+    }
+    for(i=0;i<new_annotation.length;i++){
+        old_annotations = annotations[key].slice();
+        pass = false
+        for(j=0;j<annotations[key].length;j++){
+            if(annotations[key][j][0] == new_annotation[i][0] && annotations[key][j][1] == new_annotation[i][1]){
+                pass = true
+                continue
+            }
+        }
+        if(!pass){
+            annotations[key].push(new_annotation[i]);
+        }
+    }
+}
+
+var toggle_old_new = function() {
+    var new_annotations = annotations[key].slice();
+    annotations[key] = old_annotations.slice();
+    old_annotations = new_annotations;
+}
+
+
+
+// ---------------------------------------------------------
+// Displaying
+// ---------------------------------------------------------
+
+var sequence_html = function(sequence, annotations) {
+    var ret = _.map(sequence, function(token, index) {
+        return '<span class="token" id=tok_' + index + '> '
+            + token + ' </span>';
+    });
+    _.each(annotations, function(annotation) {
+        ret[annotation[0]] = '<strong class="annotation">'
+            + ret[annotation[0]];
+        ret[annotation[1]-1] = ret[annotation[1]-1] + '</strong>';
+    });
+
+    return ret.join(' ');
+}
+
+
+
+var canSubmit = function() {
+    for (var key of keys) {
+        if (values[key] == "" && !noVal[key].is(":checked")) { return false; }
+    }
+    return true;
+}
+
+var get_form_token = function(annotations, key){
+    var lfs = [[annotations[key][0][0]]]
+    for(i=1;i<annotations[key].length;i++){
+        if(annotations[key][i][0]==annotations[key][i-1][1]){
+            lfs[lfs.length-1].push(annotations[key][i][0])
+        } else {
+            lfs.push([annotations[key][i][0]])
+        }
+    }
+    var lf_tokens = []
+    for(i=0;i<lfs.length;i++){
+        lf = ''
+        for(j=0;j<lfs[i].length;j++){
+            lf += ' '+tokens[lfs[i][j]]
+        }
+        lf = lf.substring(1,lf.length)
+        lf_tokens.push(lf)
+        if(!(lf in diction)){
+            diction[lf] = ''
+        }
+    }
+    return lf_tokens
+}
+
+var rectifybootstrap = function(id, sf, lf) {
+    if(sf){
+        sf = sf.replace("\\'","'")
+        sf = sf.replace('&quot','"')
+    }
+    if(lf){
+        lf = lf.replace("\\'","'")
+        lf = lf.replace('&quot','"')
+    }
+    $('#'+id).text(sf);
+    diction[lf] = sf
+    mappings = {}
+    for(i=0;i<lf_tokens.length;i++){
+        if($('#lf'+i).text() != 'Select Acronym'){
+            mappings[lf_tokens[i]] = $('#lf'+i).text()
+        }
+    }
+    map_input.val(JSON.stringify(mappings))
+    return false;
+}
+
+var diction = {}
+var lf_tokens = []
+var sf_tokens = []
+
+var show = function() {
+    annotations[key].sort(function(a, b) {
+        return a[0] - b[0];
+    });
+    //fill_annotated_values(datum);
+    seq_html = sequence_html(tokens, annotations[key]);
+    well.html(seq_html);
+    values[key] = get_value();
+    answer[key].val(values[key]);
+    answerHidden[key].val(values[key]);
+    tagHidden[key].val(annotations[key]);
+    console.log(key);
+    console.log(annotations[key]);
+    $('#matchform').empty()
+    if(annotations['longform'].length > 0){
+        $('#matchinfo').hide()
+        lf_tokens = get_form_token(annotations,'longform')
+        if(annotations['shortform'].length > 0){
+            sf_tokens = get_form_token(annotations,'shortform')
+        } else {
+            sf_tokens = []
+        }
+        for(i=0;i<lf_tokens.length;i++){
+            newLF = '<p>What acronym did you choose for this phrase?</p><p><strong>'+lf_tokens[i]+'</strong></p>'
+            newLF += '<div class="dropdown"><button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown"><span id="lf'+i+'" class="map-anchor">Select Acronym</span><span class="caret"></span></button><ul class="dropdown-menu" role="menu" aria-labelledby="menu1">'
+            for(j=0;j<sf_tokens.length;j++){
+                if(sf_tokens[j]){
+                    sftoken = sf_tokens[j].replace("'","\\'")
+                    sftoken = sftoken.replace('"','&quot')
+                }
+                if(lf_tokens[j]){
+                    lftoken = lf_tokens[i].replace("'","\\'")
+                    lftoken = lftoken.replace('"','&quot')
+                }
+                newLF += '<li role="menuitem"><a href="#" onclick="rectifybootstrap(\'lf'+i+'\',\''+sftoken+'\',\''+lftoken+'\'); return false;">'+sf_tokens[j]+'</a></li>'
+            }
+            newLF += '</ul><hr/>'
+            $('#matchform').append($(newLF))
+        }
+        for(i=0;i<lf_tokens.length;i++){
+            if(lf_tokens[i] in diction && diction[lf_tokens[i]].length > 0 && sf_tokens.includes(diction[lf_tokens[i]])){
+                $('#lf'+i).text(diction[lf_tokens[i]]);
+            }
+        }
+        mappings = {}
+        for(i=0;i<lf_tokens.length;i++){
+            if($('#lf'+i).text() != 'Select Acronym'){
+                mappings[lf_tokens[i]] = $('#lf'+i).text()
+            }
+        }
+        map_input.val(JSON.stringify(mappings))
+    }else{
+        $('#matchinfo').show()
+    }
+    keyname.html(shortName[key]);
+    hintname.html(hints[key]);
+    oppoElem.html(oppoName[key]);
+    oppoHintElem.html(oppoHint[key]);
+
+
+    // Handler on tokens
+    $(".token").mousedown(function() {
+        mouse_down(parseInt($(this).attr('id').split("_")[1]));
+    });
+    $(".token").mouseup(function() {
+        mouse_up(parseInt($(this).attr('id').split("_")[1]));
+    });
+
+    if (canSubmit()) {
+        submit.removeAttr("disabled");
+        submit.removeClass("btn-default");
+        submit.addClass("btn-success");
+    } else {
+        submit.attr("disabled", "disabled");
+        submit.removeClass("btn-success");
+        submit.addClass("btn-default");
+    }
+};
+
+
+makeDom();
+
+// ---------------------------------------------------------
+// Event handlers
+// ---------------------------------------------------------
+
+$("#undo").click(function() {
+    toggle_old_new();
+    show();
+});
+
+
+$("#remove").click(function() {
+    remove_all_annotations();
+    show();
+});
+
+submit.click(function(event){
+  mappings = {}
+  for(i=0;i<lf_tokens.length;i++){
+    if($('#lf'+i).text() == 'Select Acronym'){
+        event.preventDefault()
+        alert('Some phrases (long-forms) are not matched with the right acronym (short-form). Please try again!')
+        return
+    } else {
+        mappings[lf_tokens[i]] = $('#lf'+i).text()
+    }
+  }
+  if((new Set(Object.keys(mappings))).size != (new Set(Object.values(mappings))).size){
+        event.preventDefault()
+        alert('You have assigned an acronym (short-form) to more than one phrase (long-form). Please note that the phrase (long-form) of each acronym (short-form) should be continuous. Please read the instructions and try again!')
+        return
+  }
+  mappingvalue = $('#map-hidden').val()
+  if(mappingvalue){
+    mappingvalue = mappingvalue.replace("'","")
+    mappingvalue = mappingvalue.replace('\\"',"")
+  }
+<!--  if(mappingvalue != '{"high level protocol specification language":"HLPSL"}'){-->
+<!--    event.preventDefault()-->
+<!--    alert("You have matched at least one phrase (long-form) into an incorrect acronym (short-form). Please try again!")-->
+<!--    return-->
+<!--  }-->
+  if (annotations['longform'].length > 0 && annotations['shortform'].length == 0){
+    event.preventDefault()
+    alert("You have annotated long form without any short form. Please double check and make sure to read the instructions!")
+    return
+  }
+<!--  if(annotations['longform'].length){-->
+<!--    for(i=0;i<annotations['longform'].length-1;i++){-->
+<!--      if(annotations['longform'][i][1]!=annotations['longform'][i+1][0]){-->
+<!--        event.preventDefault()-->
+<!--        alert('All long forms should be continuous phrases. Please double check and make sure to read the instructions!')-->
+<!--        return-->
+<!--      }-->
+<!--    }-->
+<!--  }-->
+<!--  if(annotations['shortform'].length > 1){-->
+<!--    event.preventDefault()-->
+<!--    alert('A short form cannot have more than one word. Please double check and make sure to read the instructions!')-->
+<!--    return-->
+<!--  }-->
+  for(i=0;i<annotations['shortform'].length;i++){
+    for(j=0;j<annotations['longform'].length;j++){
+      rep = true
+      for(k=0;k<2;k++){
+        if(annotations['shortform'][i][k]!=annotations['longform'][j][k]){
+          rep = false
+          break
+        }
+      }
+      if(rep){
+        event.preventDefault()
+        alert("Short forms and long forms should be disjoint. Please double check and make sure to read the instructions!")
+        return
+      }
+    }
+  }
+  correctShorts = [[9,10],[20,21]]
+  correctLongs = [[14,15],[15,16],[16,17],[17,18],[18,19]]
+<!--  if(annotations['shortform'].length != correctShorts.length){-->
+<!--    alert('Your annotation is not correct. Please try again!')-->
+<!--    return-->
+<!--  }-->
+<!--  if(annotations['longform'].length != correctLongs.length){-->
+<!--    alert('Your annotation is not correct. Please try again!')-->
+<!--    return-->
+<!--  }-->
+<!--  for(i=0;i<annotations['shortform'].length;i++){-->
+<!--    for(j=0;j<2;j++){-->
+<!--        if(annotations['shortform'][i][j] != correctShorts[i][j]){-->
+<!--            alert('Your annotation is not correct. Please try again!')-->
+<!--            return-->
+<!--        }-->
+<!--    }-->
+<!--  }-->
+<!--  for(i=0;i<annotations['longform'].length;i++){-->
+<!--    for(j=0;j<2;j++){-->
+<!--        if(annotations['longform'][i][j] != correctLongs[i][j]){-->
+<!--            alert('Your annotation is not correct. Please try again!')-->
+<!--            return-->
+<!--        }-->
+<!--    }-->
+<!--  }-->
+  console.log(mappingvalue)
+  console.log(annotations)
+  alert('Thank you for your feedback!')
+  window.location.replace("/save_annotation?annotations="+encodeURIComponent(JSON.stringify(annotations))+"&mapping="+encodeURIComponent(mappingvalue)+"&sent="+encodeURIComponent('{{content}}'));
+})
+
+//highlight selected category
+var inputs = $("#choice input:radio");
+inputs.change(function(){
+    inputs.parent().removeClass("btn-success");
+    inputs.parent().addClass("btn-default");
+    if($(this).is(":checked")){
+        key =  $(this).val();
+        $(this).parent().removeClass("btn-default");
+        $(this).parent().addClass("btn-success");
+        show();
+    }else{
+        $(this).parent().removeClass("btn-success");
+        $(this).parent().addClass("btn-default");
+    }
+});
+
+// Instructions expand/collapse
+var content = $('#instructionBody');
+var trigger = $('#collapseTrigger');
+// content.hide();
+// $('.collapse-text').text('(Click to expand)');
+$('.collapse-text').text('(Click to collapse)');
+trigger.click(function(){
+    content.toggle();
+    var isVisible = content.is(':visible');
+    if(isVisible){
+        $('.collapse-text').text('(Click to collapse)');
+    }else{
+        $('.collapse-text').text('(Click to expand)');
+    }
+});
+
+// ---------------------------------------------------------
+// Initialize
+// ---------------------------------------------------------
+
+
+key = keys[0];
+radios[key].click();
+var tokens = raw.text().split(">>");
+raw.hide();
+show();
+</script>
+<!-- <script src="annotation.js"></script> -->
+<style>
+    #collapseTrigger{
+    color:#fff;
+    display: block;
+    text-decoration: none;
+}
+#submitButton{
+    white-space: normal;
+}
+#instructionBody table{
+    font-size: 14px;
+    margin-top: 10px;
+}
+#instructionBody table caption{
+    text-align: left;
+    padding: 0 0 5px 0;
+}
+#choice{
+    display: block;
+    margin-top: 10px;
+}
+.content{
+    margin-bottom: 15px;
+}
+.question{
+    margin-left: 15px;
+    padding-left: 10px;
+    border-left: double;
+}
+.radio:first-of-type{
+    margin-top: -5px;
+}
+
+.ann {
+    font-size: 20px;
+}
+
+.disp {
+    font-size: 20px;
+}
+
+.ann > span.token {
+    cursor: pointer;
+}
+
+.ann > span.token:hover {
+    text-decoration: underline;
+}
+
+.ann > strong.annotation:hover {
+    text-decoration: line-through;
+}
+
+.annotation {
+    font-weight: normal;
+    background-color: #EAD379;
+}
+
+.btn-ann {
+    font-size: 10px;
+}
+
+input[disabled] {
+    color: #000
+}
+
+#key-name {
+    background-color: #EAD379;
+}
+</style>

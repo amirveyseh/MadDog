@@ -1,0 +1,41 @@
+<form method="POST">
+    <label for="text">Input Text:</label>
+    <textarea id="text" name="text" rows="15" cols="100"></textarea>
+    <br><br>
+    <input id="zeroshot" name="zeroshot" type="checkbox"> Use Disambiguation model
+    <br><br>
+    <label for="sample">sample texts:</label>
+    <select name="sample" id="sample" onchange="fillText()">
+        <option value="empty">Empty</option>
+<!--        <option value="DCI">Document Cloud intro</option>-->
+        <option value="AFD1">Armed Forces Division</option>
+        <option value="AFD2">Average Fiber Diameter</option>
+        <option value="PTS1">Pali Text Society</option>
+        <option value="PTS2">Pittsburgh Theological Seminary</option>
+    </select>
+    <br><br>
+    <input type="submit" value="submit">
+</form>
+
+<br/><br/>
+
+<script type="text/javascript">
+    function fillText(){
+        var sample = document.getElementById("sample").value;
+        if(sample=='AFD1'){
+            document.getElementById('text').value='However , President Hossain Mohammad Ershad put an immediate hold to bringing the NSC under full civilian control after seizing state power . It was named the Supreme Command Headquarters after 8 years , on 10 November 1986 sealing armed forces control over national security . After 1991 , the presidential system of government by Act of Parliament was abolished , and by October 1994 , the AFD was integrated into the Prime Minister \'s Office and concurrently the combined armed forces authority was transferred to this government body . The AFD provide directive to the military of Bangladesh during disaster relief operations .'
+        }
+        if(sample=='AFD2'){
+            document.getElementById('text').value='These matrices were named fibroblast - derived matrix ( FDM ) , preosteoblast - derived matrix ( PDM ) , and chondrocyte - derived matrix ( CHDM ) . Immunofluorescence of each CDM shows that some of the matrix components are fibronectin ( FN ) , type I collagen , and laminin . Atomic force microscopy analysis presented that AFD ranged from 2 to 7 μm and FDM holds much larger fibers . The matrix elasticity measurements revealed that average Young \'s modulus of CHDM ( 17.7 ± 4.2 kPa ) was much greater than that of PDM ( 10.5 ± 1.1 kPa ) or FDM ( 5.7 ± 0.5 kPa ) .'
+        }
+        if(sample=='PTS1'){
+            document.getElementById('text').value='In Scotland Buddhists represent 0.2 % of the population or 12,795 people . The earliest Buddhist influence on Scotland came through its imperial connections with South East Asia , and as a result the early connections were with the Theravada traditions of Burma , Thailand , and Sri Lanka . To begin with , 150 years ago , this response was primarily scholarly , and a tradition of study grew up that eventually resulted in the foundation of the PTS , which undertook the huge task of translating the Pali Canon of Theravada Buddhist texts into English . The rate of growth was slow but steady through the century , and the 1950s saw the development of interest in Zen Buddhism .'
+        }
+        if(sample=='PTS2'){
+            document.getElementById('text').value='Plumer moderated the General Assemblies of two different sects of American Presbyterianism , one in the Presbyterian Church of the United States of America in 1838 and in the Presbyterian Church in the United States in 1871 . In both institutions he was a staunch supporter of Old School Presbyterianism . In addition to his career in the pulpit , Plumer was a highly regarded religious instructor , and his teaching positions included : Professor at PTS in Pennsylvania ( 1854–1862 ) ; Professor of Didactic and Polemic Theology ( 1867–1875 ) at Columbia Theological Seminary in South Carolina ; and Professor of Pastoral , Casuistic , and Historical Theology ( 1875–1880 ) at Columbia . Plumer authored at least 25 books , including commentaries on Romans , Hebrews , and Psalms , as well as numerous tracts and pamphlets , and magazine and newspaper articles .'
+        }
+        if(sample=='empty'){
+            document.getElementById('text').value=''
+        }
+    }
+</script>
