@@ -17,4 +17,4 @@ Find a demo video of MadDog at [here](https://www.youtube.com/watch?v=IkSh7LqI42
 
 # License
 
-MadDog is licensed under MIT license.
+MadDog is licensed under CC BY-NC-SA 4.0.
