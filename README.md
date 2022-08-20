@@ -2,6 +2,12 @@
 
 Codebase for our EACL 2021 demo paper: [A Web-based System for Acronym Identification and Disambiguation](https://aclanthology.org/2021.eacl-demos.20.pdf) (received the Best Demo Award).
 
+
+# Demo
+
+Online demo: http://iq.cs.uoregon.edu:5000/. We've also uploaded a demo video of MadDog on [YouTube](https://www.youtube.com/watch?v=IkSh7LqI42M).
+
+
 # Deployment
 
 To deploy the MadDog server, please make sure to have at least 125 GB of disk space and 70 GB of RAM memory. This server requires python3 to run. Follow the following steps to deploy the server:
@@ -12,9 +18,6 @@ To deploy the MadDog server, please make sure to have at least 125 GB of disk sp
 4. Install the package by running `pip install -e .` in the root directory of the repository
 5. Change the working directory to `prototype/app` and run `python server.py`. The server will be run on port 5000.
 
-# Demo
-
-Find a demo video of MadDog at [here](https://www.youtube.com/watch?v=IkSh7LqI42M)
 
 # License
 
